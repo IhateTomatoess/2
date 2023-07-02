@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speech-to-Text Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+    
+    h1 {
+      color: #333333;
+      margin-top: 40px;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function startSpeechRecognition() {
+      var recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.start();
+      
+      recognition.onresult = function(event) {
+        var transcript = event.results[0][0].transcript;
+        document.getElementById("result").innerHTML = transcript;
+      }
+      
+      recognition.onerror = function(event) {
+        console.error(event.error);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Speech-to-Text Website</h1>
+  
+    <button class="button" onclick="startSpeechRecognition()">Start Recording</button>
+    <p id="result"></p>
+    <label>Created By- P.Yogith 7A KNMS</label>
+  </div>
+</body>
+</html>
